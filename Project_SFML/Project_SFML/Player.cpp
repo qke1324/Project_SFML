@@ -7,6 +7,7 @@ Player::Player()
 	texture->loadFromFile("Texture/player.png");
 	setTexture(*texture);
 	setPosition(100.f, 100.f);
+	setOrigin(this->getTexture()->getSize().x / 2.f, this->getTexture()->getSize().y / 2.f);
 }
 
 Player::Player(const char* texturePath, const Vector2f& position)
