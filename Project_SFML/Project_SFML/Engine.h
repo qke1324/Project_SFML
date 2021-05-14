@@ -7,6 +7,7 @@ typedef struct WINDOW_INFO
 	const int WINDOW_HEIGHT = 600;
 	int framerateLimit = 60;
 	bool verticalSync = false;
+	bool mouseCursor = true;
 
 }WINDOW_INFO;
 
@@ -40,7 +41,7 @@ public:
 	
 private:
 
-	void KeyboardInput();
+	void Input();
 	void EventUpdate();
 	void SceneUpdate();
 
