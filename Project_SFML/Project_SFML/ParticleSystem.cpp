@@ -20,7 +20,7 @@ void ParticleSystem::ResetParticle(const size_t& index)
 
 void ParticleSystem::Init()
 {
-    
+    // TODO : 파티클 초기화 혹은 그리기 false
 }
 
 void ParticleSystem::SetEmitter(const Vector2f& position)
