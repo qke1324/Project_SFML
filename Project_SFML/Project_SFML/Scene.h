@@ -35,7 +35,7 @@ public:
 	void EndScene();
 
 
-	virtual void KeyBoardInput(Event* keyEvent) = 0;
+	virtual void Input(Event* keyEvent) = 0;
 	virtual void Update(const float& deltaTime) = 0;
 	virtual void Render(RenderTarget* target) = 0;
 

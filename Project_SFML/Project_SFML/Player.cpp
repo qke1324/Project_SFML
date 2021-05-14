@@ -6,7 +6,7 @@ Player::Player()
 	texture = new Texture;
 	texture->loadFromFile("Texture/player.png");
 	setTexture(*texture);
-	setPosition(100.f, 100.f);
+	setPosition(400.f, 300.f);
 	setOrigin(this->getTexture()->getSize().x / 2.f, this->getTexture()->getSize().y / 2.f);
 }
 

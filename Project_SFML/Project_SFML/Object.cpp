@@ -14,6 +14,8 @@ void Object::MoveUpdate(const Vector2f& direction)
 {
 	moveDir = direction;
 	move(moveDir * deltaTime * moveSpeed);
+
+	// TODO : smooth movement
 }
 
 void Object::Update(const float& deltaTime)
