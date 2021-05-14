@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "Engine.h"
 #include "MainScene.h"
+#include "TitleScene.h"
 
 Engine::Engine()
 {
@@ -13,7 +14,7 @@ void Engine::Init()
 	this->window->setFramerateLimit(win_info.framerateLimit);
 	this->window->setVerticalSyncEnabled(win_info.verticalSync);
 	this->window->setMouseCursorVisible(win_info.mouseCursor);
-	scenes.push(new MainScene(this->window, &this->scenes));
+	scenes.push(new TitleScene(this->window, &this->scenes));
 }
 
 void Engine::Destroy()

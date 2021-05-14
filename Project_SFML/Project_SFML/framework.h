@@ -11,4 +11,4 @@ using namespace sf;
 
 using namespace std;
 
-constexpr float PI = 3.14159265;
+constexpr float PI = 3.14159265f;
