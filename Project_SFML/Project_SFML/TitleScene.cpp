@@ -10,35 +10,31 @@ TitleScene::TitleScene(RenderWindow* window, stack<Scene*>* scenes)
 
 void TitleScene::Init()
 {
-	RectangleShape* startbutton = new RectangleShape(Vector2f(100.f, 100.f));
-	startbutton->setFillColor(Color::Red);
-	buttons.insert({ "Start", startbutton });
-
-	Font* startfont = new Font();
-	startfont->loadFromFile("Fonts/Dosis-Light.ttf");
-	
-	fonts.insert({ "Start", startfont });
-	
-	Text* starttext = new Text();
-	starttext->setFont(*startfont);
-	starttext->setString("Start");
-	starttext->setFillColor(Color::White);
-	starttext->setPosition(startbutton->getPosition().x, startbutton->getPosition().y);
-	texts.insert({ "Start", starttext });
+	buttons["START"] = new Button(
+		{ 200.f, 300.f }, { 100.f, 50.f }, 
+		"Fonts/Dosis-Light.ttf", "START", 
+		Color::Magenta, Color::Blue, Color::Yellow);
 
 }
 
 void TitleScene::Input(Event* keyEvent)
 {
-	if (Mouse::isButtonPressed(Mouse::Left))
-	{
-		scenes->push(new MainScene(window, scenes));
-	}
+
 }
 
 void TitleScene::Update(const float& deltaTime)
 {
 	MouseUpdate();
+	for (auto& button : buttons)
+	{
+		button.second->Update(mousePositionView);
+	}
+
+	if (buttons["START"]->isPressd())
+	{
+		scenes->push(new MainScene(window, scenes));
+	}
+
 }
 
 void TitleScene::Render(RenderTarget* target)
@@ -48,10 +44,7 @@ void TitleScene::Render(RenderTarget* target)
 		for (auto& button : buttons)
 		{
 			target->draw(*button.second);
-		}
-		for (auto& text : texts)
-		{
-			target->draw(*text.second);
+			target->draw(*button.second->GetText());
 		}
 	}
 }

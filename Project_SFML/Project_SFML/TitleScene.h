@@ -13,9 +13,7 @@ public:
 
 private:
 
-	map<string, RectangleShape*> buttons;
-	map<string, Text*> texts;
-	map<string, Font*> fonts;
+	map<string, Button*> buttons;
 
 private:
 
