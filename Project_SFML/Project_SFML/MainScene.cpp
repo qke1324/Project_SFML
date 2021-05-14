@@ -62,12 +62,22 @@ void MainScene::Update(const float& deltaTime)
 	{
 		obj.second->Update(deltaTime);
 	}
-	float dirX = mousePositionView.x - objects["Player"]->getPosition().x;
-	float dirY = mousePositionView.y - objects["Player"]->getPosition().y;
+	float rotX = mousePositionView.x - objects["Player"]->getPosition().x;
+	float rotY = mousePositionView.y - objects["Player"]->getPosition().y;
 	
-	float rotation = (atan2(dirY, dirX)) * 180 / PI;
+	float rotation = (atan2(rotY, rotX)) * 180 / PI;
 
 	objects["Player"]->setRotation(rotation);
+
+	float dirX = mousePositionView.x - objects["Player"]->getPosition().x;
+	float dirY = mousePositionView.y - objects["Player"]->getPosition().y;
+	float length = sqrt(
+		(mousePositionView.x - objects["Player"]->getPosition().x) * (mousePositionView.x - objects["Player"]->getPosition().x) +
+		(mousePositionView.y - objects["Player"]->getPosition().y) * (mousePositionView.y - objects["Player"]->getPosition().y));
+	dirX /= length;
+	dirY /= length;
+
+	objects["Player"]->move(dirX, dirY);
 
 	if (objects["Object"]->getGlobalBounds().intersects(objects["Player"]->getGlobalBounds()))
 	{

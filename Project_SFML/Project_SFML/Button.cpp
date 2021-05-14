@@ -15,6 +15,7 @@ Button::Button(const Vector2f& position, const Vector2f& scale,
 	text.setString(textString);
 	text.setFillColor(Color::White);
 	text.setCharacterSize(25);
+	text.setOrigin(getSize().x / 2.f, getSize().y / 2.f);
 	text.setPosition(getPosition().x, getPosition().y);
 	setFillColor(idleColor);
 }

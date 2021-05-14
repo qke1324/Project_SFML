@@ -15,6 +15,10 @@ void TitleScene::Init()
 		"Fonts/Dosis-Light.ttf", "START", 
 		Color::Magenta, Color::Blue, Color::Yellow);
 
+	buttons["QUIT"] = new Button(
+		{ 200.f, 400.f }, { 100.f, 50.f },
+		"Fonts/Dosis-Light.ttf", "QUIT",
+		Color::Magenta, Color::Blue, Color::Yellow);
 }
 
 void TitleScene::Input(Event* keyEvent)
@@ -34,7 +38,10 @@ void TitleScene::Update(const float& deltaTime)
 	{
 		scenes->push(new MainScene(window, scenes));
 	}
-
+	if (buttons["QUIT"]->isPressd())
+	{
+		EndScene();
+	}
 }
 
 void TitleScene::Render(RenderTarget* target)
