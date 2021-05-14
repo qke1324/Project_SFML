@@ -12,8 +12,10 @@ void MainScene::Init()
 	txBackGround.loadFromFile("Texture/background.png");
 	spBackGround.setTexture(txBackGround);
 
-	Object* obj = new Player();
-	objects.insert({ "Player",obj });
+	Object* player = new Player();
+	objects.insert({ "Player", player });
+	Object* obj = new Object("Texture/player.png", Vector2f(200.f, 200.f));
+	objects.insert({ "Object", obj });
 }
 
 void MainScene::KeyBoardInput(Event* keyEvent)
@@ -54,6 +56,11 @@ void MainScene::Update(const float& deltaTime)
 		obj.second->Update(deltaTime);
 	}
 	objects["Player"]->rotate(1.f);
+
+	if (objects["Object"]->getGlobalBounds().intersects(objects["Player"]->getGlobalBounds()))
+	{
+		// collide
+	}
 }
 
 void MainScene::Render(RenderTarget* target)
