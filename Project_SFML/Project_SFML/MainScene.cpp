@@ -26,24 +26,24 @@ void MainScene::KeyBoardInput(Event* keyEvent)
 	{
 		EndScene();
 	}
-
-	if (input == Keyboard::W)
+	
+	if (Keyboard::isKeyPressed(Keyboard::W))
 	{
-		objects["Player"]->move(0.f, -1.f);
+		objects["Player"]->MoveUpdate({ 0.f, -10.f });
 	}
-	if (input == Keyboard::A)
+	if (Keyboard::isKeyPressed(Keyboard::A))
 	{
-		objects["Player"]->move(-1.f, 0.f);
+		objects["Player"]->MoveUpdate({ -10.f, 0.f });
 	}
-	if (input == Keyboard::S)
+	if (Keyboard::isKeyPressed(Keyboard::S))
 	{
-		objects["Player"]->move(0.f, 1.f);
+		objects["Player"]->MoveUpdate({ 0.f, 10.f });
 	}
-	if (input == Keyboard::D)
+	if (Keyboard::isKeyPressed(Keyboard::D))
 	{
-		objects["Player"]->move(1.f, 0.f);
+		objects["Player"]->MoveUpdate({ 10.f, 0.f });
 	}
-	if (input == Keyboard::Space)
+	if (Keyboard::isKeyPressed(Keyboard::Space))
 	{
 	}
 }
@@ -51,10 +51,12 @@ void MainScene::KeyBoardInput(Event* keyEvent)
 void MainScene::Update(const float& deltaTime)
 {
 	MouseUpdate();
+	
 	for (auto& obj : objects)
 	{
 		obj.second->Update(deltaTime);
 	}
+
 	objects["Player"]->rotate(1.f);
 
 	if (objects["Object"]->getGlobalBounds().intersects(objects["Player"]->getGlobalBounds()))

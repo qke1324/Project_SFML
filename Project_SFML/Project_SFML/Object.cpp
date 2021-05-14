@@ -10,7 +10,13 @@ Object::Object(const char* texturePath, const Vector2f& position)
 	setOrigin(this->getTexture()->getSize().x / 2.f, this->getTexture()->getSize().y / 2.f);
 }
 
+void Object::MoveUpdate(const Vector2f& direction)
+{
+	moveDir = direction;
+	move(moveDir * deltaTime * moveSpeed);
+}
+
 void Object::Update(const float& deltaTime)
 {
-
+	this->deltaTime = deltaTime;
 }

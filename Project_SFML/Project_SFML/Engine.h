@@ -5,7 +5,7 @@ typedef struct WINDOW_INFO
 	const char* windowName = "window name";
 	const int WINDOW_WIDTH = 800;
 	const int WINDOW_HEIGHT = 600;
-	int framerateLimit = 120;
+	int framerateLimit = 60;
 	bool verticalSync = false;
 
 }WINDOW_INFO;
