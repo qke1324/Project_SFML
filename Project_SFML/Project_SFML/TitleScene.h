@@ -1,6 +1,8 @@
 #pragma once
 #include "Scene.h"
 
+class ParticleSystem;
+
 class TitleScene : public Scene
 {
 public:
@@ -14,6 +16,7 @@ public:
 private:
 
 	map<string, Button*> buttons;
+	ParticleSystem* particleSys = nullptr;
 
 private:
 

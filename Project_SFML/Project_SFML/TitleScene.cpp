@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "TitleScene.h"
 #include "MainScene.h"
+#include "ParticleSystem.h"
 
 TitleScene::TitleScene(RenderWindow* window, stack<Scene*>* scenes)
 	:Scene(window, scenes)
@@ -19,11 +20,17 @@ void TitleScene::Init()
 		{ 200.f, 400.f }, { 100.f, 50.f },
 		"Fonts/Dosis-Light.ttf", "QUIT",
 		Color::Magenta, Color::Blue, Color::Yellow);
+
+	particleSys = new ParticleSystem(1000);
+
 }
 
 void TitleScene::Input(Event* keyEvent)
 {
-
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		particleSys->SetEmitter(mousePositionView);
+	}
 }
 
 void TitleScene::Update(const float& deltaTime)
@@ -42,6 +49,10 @@ void TitleScene::Update(const float& deltaTime)
 	{
 		EndScene();
 	}
+
+	particleSys->SetEmitter(mousePositionView);
+	particleSys->Update(deltaTime);
+
 }
 
 void TitleScene::Render(RenderTarget* target)
@@ -53,5 +64,6 @@ void TitleScene::Render(RenderTarget* target)
 			target->draw(*button.second);
 			target->draw(*button.second->GetText());
 		}
+		target->draw(*particleSys);
 	}
 }
