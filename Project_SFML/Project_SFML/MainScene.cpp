@@ -18,7 +18,7 @@ void MainScene::Init()
 	objects.insert({ "Object", obj });
 }
 
-void MainScene::KeyBoardInput(Event* keyEvent)
+void MainScene::Input(Event* keyEvent)
 {
 	auto input = keyEvent->text.unicode;
 
@@ -46,6 +46,12 @@ void MainScene::KeyBoardInput(Event* keyEvent)
 	if (Keyboard::isKeyPressed(Keyboard::Space))
 	{
 	}
+
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		cout << mousePositionView.x << " / " << mousePositionView.y << endl;
+	}
+
 }
 
 void MainScene::Update(const float& deltaTime)
@@ -56,8 +62,12 @@ void MainScene::Update(const float& deltaTime)
 	{
 		obj.second->Update(deltaTime);
 	}
+	float dirX = mousePositionView.x - objects["Player"]->getPosition().x;
+	float dirY = mousePositionView.y - objects["Player"]->getPosition().y;
+	
+	float rotation = (atan2(dirY, dirX)) * 180 / PI;
 
-	objects["Player"]->rotate(1.f);
+	objects["Player"]->setRotation(rotation);
 
 	if (objects["Object"]->getGlobalBounds().intersects(objects["Player"]->getGlobalBounds()))
 	{

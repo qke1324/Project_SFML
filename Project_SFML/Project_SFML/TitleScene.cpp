@@ -13,7 +13,7 @@ void TitleScene::Init()
 
 }
 
-void TitleScene::KeyBoardInput(Event* keyEvent)
+void TitleScene::Input(Event* keyEvent)
 {
 
 }

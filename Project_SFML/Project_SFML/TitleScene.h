@@ -21,7 +21,7 @@ private:
 
 public:
 
-	virtual void KeyBoardInput(Event* keyEvent);
+	virtual void Input(Event* keyEvent);
 	virtual void Update(const float& deltaTime);
 	virtual void Render(RenderTarget* target);
 

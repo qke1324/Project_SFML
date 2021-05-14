@@ -10,3 +10,5 @@ using namespace sf;
 #include <map>
 
 using namespace std;
+
+constexpr float PI = 3.14159265;

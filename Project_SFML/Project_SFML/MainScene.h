@@ -20,7 +20,7 @@ private:
 
 public:
 
-	virtual void KeyBoardInput(Event* keyEvent) override;
+	virtual void Input(Event* keyEvent) override;
 	virtual void Update(const float& deltaTime) override;
 	virtual void Render(RenderTarget* target) override;
 };
