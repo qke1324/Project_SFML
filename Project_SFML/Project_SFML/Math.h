@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Config.hpp>
 using namespace sf;
 
 constexpr float PI = 3.14159265f;
