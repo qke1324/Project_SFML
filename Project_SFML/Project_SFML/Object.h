@@ -16,8 +16,12 @@ protected:
 	float moveSpeed = 10.f;
 	float deltaTime = 0.f;
 
+	bool active = true;
+
 public:
 
+	const bool& isActive() const;
+	void SetActive(const bool& active);
 	void MoveUpdate(const Vector2f& direction);
 	virtual void Update(const float& deltaTime);
 	

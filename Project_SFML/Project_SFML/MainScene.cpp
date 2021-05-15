@@ -83,7 +83,7 @@ void MainScene::Update(const float& deltaTime)
 
 	if (objects["Object"]->getGlobalBounds().intersects(objects["Player"]->getGlobalBounds()))
 	{
-		// collide
+		objects["Object"]->SetActive(false);
 	}
 }
 
@@ -94,7 +94,10 @@ void MainScene::Render(RenderTarget* target)
 		target->draw(spBackGround);
 		for (auto& obj : objects)
 		{
-			target->draw(*obj.second);
+			if (obj.second->isActive())
+			{
+				target->draw(*obj.second);
+			}
 		}
 	}
 }

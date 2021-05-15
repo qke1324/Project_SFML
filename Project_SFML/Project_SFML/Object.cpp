@@ -10,6 +10,16 @@ Object::Object(const char* texturePath, const Vector2f& position)
 	setOrigin(this->getTexture()->getSize().x / 2.f, this->getTexture()->getSize().y / 2.f);
 }
 
+const bool& Object::isActive() const
+{
+	return active;
+}
+
+void Object::SetActive(const bool& active)
+{
+	this->active = active;
+}
+
 void Object::MoveUpdate(const Vector2f& direction)
 {
 	moveDir = direction;
