@@ -21,6 +21,9 @@ TitleScene::~TitleScene()
 		}
 		buttons.clear();
 	}
+
+	SAFE_DELETE(soundSys);
+
 }
 void TitleScene::Init()
 {

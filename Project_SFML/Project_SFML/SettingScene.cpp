@@ -22,6 +22,8 @@ SettingScene::~SettingScene()
 		}
 		buttons.clear();
 	}
+
+	SAFE_DELETE(soundSys);
 }
 void SettingScene::Init()
 {
@@ -94,6 +96,7 @@ void SettingScene::Update(const float& deltaTime)
 	{
 		soundSys->Pause();
 	}
+
 }
 
 void SettingScene::Render(RenderTarget* target)

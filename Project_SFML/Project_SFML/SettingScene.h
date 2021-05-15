@@ -3,6 +3,7 @@
 class SettingScene : public Scene
 {
 public:
+
 	SettingScene() = default;
 	SettingScene(RenderWindow* window, stack<Scene*>* scenes);
 	SettingScene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys);
