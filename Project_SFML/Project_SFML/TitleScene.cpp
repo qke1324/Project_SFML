@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "TitleScene.h"
 #include "MainScene.h"
+#include "SettingScene.h"
 #include "ParticleSystem.h"
-
 TitleScene::TitleScene(RenderWindow* window, stack<Scene*>* scenes)
 	:Scene(window, scenes)
 {
@@ -21,6 +21,11 @@ void TitleScene::Init()
 		"Fonts/Dosis-Light.ttf", "QUIT",
 		Color::Magenta, Color::Blue, Color::Yellow);
 
+	buttons["Setting"] = new Button(
+		{ 200.f, 500.f }, { 100.f, 50.f },
+		"Fonts/Dosis-Light.ttf", "Setting",
+		Color::Magenta, Color::Blue, Color::Yellow);
+
 	particleSys = new ParticleSystem(1000);
 
 }
@@ -29,13 +34,14 @@ void TitleScene::Input(Event* keyEvent)
 {
 	if (Mouse::isButtonPressed(Mouse::Left))
 	{
-		particleSys->SetEmitter(mousePositionView);
+		cout << mousePositionView.x << " / " << mousePositionView.y << endl;
 	}
 }
 
 void TitleScene::Update(const float& deltaTime)
 {
 	MouseUpdate();
+
 	for (auto& button : buttons)
 	{
 		button.second->Update(mousePositionView);
@@ -48,6 +54,10 @@ void TitleScene::Update(const float& deltaTime)
 	if (buttons["QUIT"]->isPressd())
 	{
 		EndScene();
+	}
+	if (buttons["Setting"]->isPressd())
+	{
+		scenes->push(new SettingScene(window, scenes));
 	}
 
 	particleSys->SetEmitter(mousePositionView);

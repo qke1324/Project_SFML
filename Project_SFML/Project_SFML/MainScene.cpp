@@ -65,7 +65,9 @@ void MainScene::Update(const float& deltaTime)
 	float rotX = mousePositionView.x - objects["Player"]->getPosition().x;
 	float rotY = mousePositionView.y - objects["Player"]->getPosition().y;
 	
-	float rotation = (atan2(rotY, rotX)) * 180 / PI;
+	// sprite texture 
+	// dir top = 90;
+	float rotation = ((atan2(rotY, rotX)) * 180.f / PI) + 90.f;
 
 	objects["Player"]->setRotation(rotation);
 
