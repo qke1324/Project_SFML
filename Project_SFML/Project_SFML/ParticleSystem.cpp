@@ -13,7 +13,7 @@ void ParticleSystem::ResetParticle(const size_t& index)
 	float speed = (rand() % 50) + 50.f;
 
 	particles[index].velocity = Vector2f(cos(angle) * speed, sin(angle) * speed);
-	particles[index].lifeTime = rand() % 5;
+    particles[index].lifeTime = (float)(rand() % 5);
 
 	vertices[index].position = emitter;
 }

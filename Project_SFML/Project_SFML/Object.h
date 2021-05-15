@@ -7,7 +7,7 @@ public:
 	Object(const char* texturePath, const Vector2f& position);
 	Object(const Object&) = delete;
 	Object& operator=(const Object&) = delete;
-	virtual ~Object() = default;
+	virtual ~Object();
 
 protected:
 

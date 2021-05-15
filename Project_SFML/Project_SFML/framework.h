@@ -12,3 +12,5 @@ using namespace sf;
 using namespace std;
 
 constexpr float PI = 3.14159265f;
+
+#define SAFE_DELETE(x) if((x)) delete (x); (x) = nullptr

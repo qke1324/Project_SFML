@@ -6,6 +6,9 @@ class MainScene : public Scene
 public:
 	MainScene() = default;
 	MainScene(RenderWindow* window, stack<Scene*>* scenes);
+	MainScene(const MainScene&) = delete;
+	MainScene& operator=(const MainScene&) = delete;
+	virtual ~MainScene();
 
 private:
 

@@ -7,6 +7,18 @@ MainScene::MainScene(RenderWindow* window, stack<Scene*>* scenes)
 	Init();
 }
 
+MainScene::~MainScene()
+{
+	if (!objects.empty())
+	{
+		for (auto& object : objects)
+		{
+			SAFE_DELETE(object.second);
+		}
+		objects.clear();
+	}
+}
+
 void MainScene::Init()
 {
 	txBackGround.loadFromFile("Texture/background.png");
@@ -62,25 +74,20 @@ void MainScene::Update(const float& deltaTime)
 	{
 		obj.second->Update(deltaTime);
 	}
-	float rotX = mousePositionView.x - objects["Player"]->getPosition().x;
-	float rotY = mousePositionView.y - objects["Player"]->getPosition().y;
-	
-	// sprite texture 
-	// dir top = 90;
-	float rotation = ((atan2(rotY, rotX)) * 180.f / PI) + 90.f;
-
-	objects["Player"]->setRotation(rotation);
 
 	float dirX = mousePositionView.x - objects["Player"]->getPosition().x;
 	float dirY = mousePositionView.y - objects["Player"]->getPosition().y;
-	float length = sqrt(
-		(mousePositionView.x - objects["Player"]->getPosition().x) * (mousePositionView.x - objects["Player"]->getPosition().x) +
-		(mousePositionView.y - objects["Player"]->getPosition().y) * (mousePositionView.y - objects["Player"]->getPosition().y));
-	dirX /= length;
-	dirY /= length;
 
-	objects["Player"]->move(dirX, dirY);
+	// sprite texture 
+	// dir top = 90;
+	float rotation = ((atan2(dirY, dirX)) * 180.f / PI) + 90.f;
+	objects["Player"]->setRotation(rotation);
 
+	// move dir
+	float length = sqrt((dirX * dirX) + (dirY * dirY));
+	objects["Player"]->move(dirX / length, dirY / length);
+
+	//collide check
 	if (objects["Object"]->getGlobalBounds().intersects(objects["Player"]->getGlobalBounds()))
 	{
 		objects["Object"]->SetActive(false);

@@ -11,7 +11,7 @@ public:
 	TitleScene(RenderWindow* window, stack<Scene*>* scenes);
 	TitleScene(const TitleScene&) = delete;
 	TitleScene& operator=(const TitleScene&) = delete;
-	virtual ~TitleScene() = default;
+	virtual ~TitleScene();
 
 private:
 

@@ -6,7 +6,17 @@ SettingScene::SettingScene(RenderWindow* window, stack<Scene*>* scenes)
 {
 	Init();
 }
-
+SettingScene::~SettingScene()
+{
+	if (!buttons.empty())
+	{
+		for (auto& button : buttons)
+		{
+			SAFE_DELETE(button.second);
+		}
+		buttons.clear();
+	}
+}
 void SettingScene::Init()
 {
 	/*

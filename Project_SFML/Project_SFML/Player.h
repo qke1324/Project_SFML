@@ -16,6 +16,5 @@ private:
 public:
 
 	void SetSpeed(const float& speed);
-
 };
 

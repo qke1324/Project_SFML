@@ -7,7 +7,7 @@ public:
 	SettingScene(RenderWindow* window, stack<Scene*>* scenes);
 	SettingScene(const SettingScene&) = delete;
 	SettingScene& operator=(const SettingScene&) = delete;
-	virtual ~SettingScene() = default;
+	virtual ~SettingScene();
 
 protected:
 

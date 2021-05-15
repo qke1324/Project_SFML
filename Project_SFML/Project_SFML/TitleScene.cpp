@@ -3,12 +3,25 @@
 #include "MainScene.h"
 #include "SettingScene.h"
 #include "ParticleSystem.h"
+
 TitleScene::TitleScene(RenderWindow* window, stack<Scene*>* scenes)
 	:Scene(window, scenes)
 {
 	Init();
 }
+TitleScene::~TitleScene()
+{
+	SAFE_DELETE(particleSys);
 
+	if (!buttons.empty())
+	{
+		for (auto& button : buttons)
+		{
+			SAFE_DELETE(button.second);
+		}
+		buttons.clear();
+	}
+}
 void TitleScene::Init()
 {
 	buttons["START"] = new Button(
