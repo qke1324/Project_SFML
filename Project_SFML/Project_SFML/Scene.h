@@ -24,6 +24,9 @@ protected:
 	Vector2i mousePositionWindow	{ 0, 0 };
 	Vector2f mousePositionView		{ 0.f, 0.f };
 
+	Sprite spcursor;
+	Texture txcursor;
+
 	bool quit = false;
 
 private:
@@ -37,7 +40,7 @@ protected:
 public:
 	bool GetQuit() const;
 	void EndScene();
-
+	const Sprite& GetCursor() const;
 
 	virtual void Input(Event* keyEvent) = 0;
 	virtual void Update(const float& deltaTime) = 0;

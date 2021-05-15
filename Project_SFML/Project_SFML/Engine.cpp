@@ -96,6 +96,7 @@ bool Engine::Render()
 		if (!scenes.empty())
 		{
 			this->scenes.top()->Render(this->window);
+			window->draw(this->scenes.top()->GetCursor());
 		}
 		else
 		{

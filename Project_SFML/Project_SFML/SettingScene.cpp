@@ -22,8 +22,6 @@ SettingScene::~SettingScene()
 		}
 		buttons.clear();
 	}
-
-	SAFE_DELETE(soundSys);
 }
 void SettingScene::Init()
 {
