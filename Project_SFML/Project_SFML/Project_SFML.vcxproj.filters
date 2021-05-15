@@ -59,6 +59,9 @@
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일\03 Scene</Filter>
     </ClCompile>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>소스 파일\02 System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -90,6 +93,9 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>소스 파일\03 Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>소스 파일\02 System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

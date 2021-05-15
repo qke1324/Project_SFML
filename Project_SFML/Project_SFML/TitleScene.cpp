@@ -40,7 +40,8 @@ void TitleScene::Init()
 		Color::Magenta, Color::Blue, Color::Yellow);
 
 	particleSys = new ParticleSystem(1000);
-
+	soundSys = new SoundSystem("Sound/NooMA-Mauve.wav", true);
+	soundSys->Play();
 }
 
 void TitleScene::Input(Event* keyEvent)
@@ -70,7 +71,7 @@ void TitleScene::Update(const float& deltaTime)
 	}
 	if (buttons["Setting"]->isPressd())
 	{
-		scenes->push(new SettingScene(window, scenes));
+		scenes->push(new SettingScene(window, scenes, soundSys));
 	}
 
 	particleSys->SetEmitter(mousePositionView);

@@ -7,6 +7,13 @@ Scene::Scene(RenderWindow* window, stack<Scene*>* scenes)
 	this->scenes = scenes;
 }
 
+Scene::Scene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys)
+{
+	this->window = window;
+	this->scenes = scenes;
+	this->soundSys = soundSys;
+}
+
 bool Scene::GetQuit() const
 {
 	return quit;

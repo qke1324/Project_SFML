@@ -17,16 +17,18 @@ private:
 
 	map<string, Button*> buttons;
 	ParticleSystem* particleSys = nullptr;
+	SoundSystem* soundSys = nullptr;
+
 
 private:
 
-	virtual void Init();
+	virtual void Init() override;
 
 public:
 
-	virtual void Input(Event* keyEvent);
-	virtual void Update(const float& deltaTime);
-	virtual void Render(RenderTarget* target);
+	virtual void Input(Event* keyEvent) override;
+	virtual void Update(const float& deltaTime) override;
+	virtual void Render(RenderTarget* target) override;
 
 };
 

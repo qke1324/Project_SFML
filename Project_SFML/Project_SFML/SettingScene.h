@@ -5,6 +5,7 @@ class SettingScene : public Scene
 public:
 	SettingScene() = default;
 	SettingScene(RenderWindow* window, stack<Scene*>* scenes);
+	SettingScene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys);
 	SettingScene(const SettingScene&) = delete;
 	SettingScene& operator=(const SettingScene&) = delete;
 	virtual ~SettingScene();
