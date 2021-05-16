@@ -12,6 +12,18 @@ ParticleSystem::ParticleSystem(const unsigned int& count)
 	}
 }
 
+ParticleSystem::~ParticleSystem()
+{
+	if (!particles.empty())
+	{
+		for (auto& particle : particles)
+		{
+			SAFE_DELETE(particle);
+		}
+		particles.clear();
+	}
+}
+
 void ParticleSystem::ParticleOn(const Vector2f& startPosition)
 {
 	isOn = true;
