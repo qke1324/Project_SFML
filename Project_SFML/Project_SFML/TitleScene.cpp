@@ -42,7 +42,7 @@ void TitleScene::Init()
 		"Fonts/Dosis-Light.ttf", "Setting",
 		Color::Magenta, Color::Blue, Color::Yellow);
 
-	particleSys = new ParticleSystem(1000);
+	particleSys = new ParticleSystem(100);
 	soundSys = new SoundSystem("Sound/NooMA-Mauve.wav", true);
 	soundSys->AddEffectSound("Sound/swing.wav", "swing");
 	soundSys->AddEffectSound("Sound/hit.wav", "hit");
@@ -53,7 +53,7 @@ void TitleScene::Input(Event* keyEvent)
 {
 	if (Mouse::isButtonPressed(Mouse::Left))
 	{
-		cout << mousePositionView.x << " / " << mousePositionView.y << endl;
+		particleSys->ParticleOn(mousePositionView);
 	}
 }
 
@@ -79,9 +79,7 @@ void TitleScene::Update(const float& deltaTime)
 		scenes->push(new SettingScene(window, scenes, soundSys));
 	}
 
-	particleSys->SetEmitter(mousePositionView);
 	particleSys->Update(deltaTime);
-
 }
 
 void TitleScene::Render(RenderTarget* target)
@@ -93,6 +91,6 @@ void TitleScene::Render(RenderTarget* target)
 			target->draw(*button.second);
 			target->draw(*button.second->GetText());
 		}
-		target->draw(*particleSys);
+		particleSys->Render(target);
 	}
 }

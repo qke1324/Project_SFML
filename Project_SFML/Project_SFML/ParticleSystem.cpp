@@ -2,58 +2,65 @@
 #include "ParticleSystem.h"
 
 ParticleSystem::ParticleSystem(const unsigned int& count)
-	:vertices(Points, count), particles(count)
+	:particles(count)
 {
-
+	for (auto& i : particles)
+	{
+		i = new Particle("Texture/particle.png");
+		i->SetMoveDirection(Math::Normalize({ Math::RandomFloat(), Math::RandomFloat() }, { Math::RandomFloat(), Math::RandomFloat() }));
+		i->SetMoveSpeed(Math::RandomFloat());
+	}
 }
 
-void ParticleSystem::ResetParticle(const size_t& index)
+void ParticleSystem::ParticleOn(const Vector2f& startPosition)
 {
-	float angle = (rand() % 360) * PI / 180.f;
-	float speed = (rand() % 50) + 50.f;
-
-	particles[index].velocity = Vector2f(cos(angle) * speed, sin(angle) * speed);
-    particles[index].lifeTime = (float)(rand() % 5);
-
-	vertices[index].position = emitter;
+	isOn = true;
+	particleLifeTime = 0.f;
+	for (auto& i : particles)
+	{
+		i->SetActive(true);
+		i->setPosition(startPosition);
+		i->SetMoveDirection(Math::Normalize({ Math::RandomFloat(), Math::RandomFloat() }, { Math::RandomFloat(), Math::RandomFloat() }));
+		i->SetMoveSpeed(Math::RandomFloat());
+	}
 }
 
-void ParticleSystem::Init()
+void ParticleSystem::ParticleOff()
 {
-    // TODO : 파티클 초기화 혹은 그리기 false
-}
-
-void ParticleSystem::SetEmitter(const Vector2f& position)
-{
-	emitter = position;
+	isOn = false;
+	for (auto& i : particles)
+	{
+		i->SetActive(false);
+		i->setPosition(this->offPosition);
+	}
 }
 
 void ParticleSystem::Update(const float& deltaTime)
 {
-    for (std::size_t i = 0; i < particles.size(); ++i)
-    {
-        Particle& p = particles[i];
-        p.lifeTime -= deltaTime;
-
-        if (p.lifeTime <= 0.f)
-        {
-            ResetParticle(i);  
-        }
-
-        vertices[i].position += p.velocity * deltaTime;
-
-        float ratio =  lifeTime / p.lifeTime ;
-        vertices[i].color.r = static_cast<sf::Uint8>(ratio * 255);
-        vertices[i].color.a = static_cast<sf::Uint8>(ratio * 255);
-    }
+	particleLifeTime += deltaTime;
+	if (particleLifeTime >= .4f)
+	{
+		ParticleOff();
+	}
+	if (isOn)
+	{
+		for (auto& i : particles)
+		{
+			i->Update(deltaTime);
+		}
+	}
 }
 
-void ParticleSystem::draw(RenderTarget& target, RenderStates states) const
+void ParticleSystem::Render(RenderTarget* target)
 {
-    states.transform *= getTransform();
-    states.texture = NULL;
-    if (isActive)
-    {
-        target.draw(vertices, states);
-    }
+	if (isOn)
+	{
+		if (target)
+		{
+			for (auto& i : particles)
+			{
+				target->draw(*i);
+			}
+		}
+	}
 }

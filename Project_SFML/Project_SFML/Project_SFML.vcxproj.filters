@@ -58,6 +58,9 @@
     <ClCompile Include="SoundSystem.cpp">
       <Filter>소스 파일\02 System</Filter>
     </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -96,5 +99,6 @@
     <ClInclude Include="Math.h">
       <Filter>소스 파일\99 Common</Filter>
     </ClInclude>
+    <ClInclude Include="Particle.h" />
   </ItemGroup>
 </Project>

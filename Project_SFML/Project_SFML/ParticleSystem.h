@@ -1,5 +1,7 @@
 #pragma once
-class ParticleSystem : public Drawable, public Transformable
+#include "Particle.h"
+
+class ParticleSystem
 {
 public:
 
@@ -11,27 +13,20 @@ public:
 
 private:
 
-	struct Particle
-	{
-		Vector2f velocity{ 0.f, 0.f };
-		float lifeTime = 0.f;
-	};
+	vector<Particle*> particles;
 
-	vector<Particle> particles;
-	VertexArray vertices;
-	float lifeTime = 3.f;
-	Vector2f emitter{ 0.f, 0.f };
-	bool isActive = true;
+	Vector2f offPosition{ -50.f, -50.f };
 
-private:
+	bool isOn = false;
 
-	void ResetParticle(const size_t& index);
+	float particleLifeTime = 0.f;
 
 public:
-	void Init();
-	void SetEmitter(const Vector2f& position);
-	void Update(const float& deltaTime);
 
-	virtual void draw(RenderTarget& target, RenderStates states) const;
+	void ParticleOn(const Vector2f& startPosition);
+	void ParticleOff();
+	void Update(const float& deltaTime);
+	void Render(RenderTarget* target);
+
 };
 
