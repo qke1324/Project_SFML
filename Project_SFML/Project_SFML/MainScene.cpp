@@ -7,8 +7,8 @@ MainScene::MainScene(RenderWindow* window, stack<Scene*>* scenes)
 	Init();
 }
 
-MainScene::MainScene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys)
-	: Scene(window, scenes, soundSys)
+MainScene::MainScene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys, ParticleSystem* particleSys)
+	: Scene(window, scenes, soundSys, particleSys)
 {
 	Init();
 }
@@ -75,7 +75,7 @@ void MainScene::Input(Event* keyEvent)
 void MainScene::Update(const float& deltaTime)
 {
 	MouseUpdate();
-	
+	particleSys->Update(deltaTime);
 	for (auto& obj : objects)
 	{
 		obj.second->Update(deltaTime);
@@ -92,6 +92,7 @@ void MainScene::Update(const float& deltaTime)
 	if (objects["Object"]->getGlobalBounds().intersects(objects["Player"]->getGlobalBounds()))
 	{
 		soundSys->EffectPlay("hit");
+		particleSys->ParticleOn(objects["Object"]->getPosition());
 		objects["Object"]->setPosition(Math::RandomFloat(), Math::RandomFloat());
 	}
 }
@@ -108,5 +109,6 @@ void MainScene::Render(RenderTarget* target)
 				target->draw(*obj.second);
 			}
 		}
+		particleSys->Render(target);
 	}
 }

@@ -10,11 +10,12 @@ Scene::Scene(RenderWindow* window, stack<Scene*>* scenes)
 	spcursor.setScale({ 0.1f, 0.1f });
 }
 
-Scene::Scene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys)
+Scene::Scene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys, ParticleSystem* particleSys)
 {
 	this->window = window;
 	this->scenes = scenes;
 	this->soundSys = soundSys;
+	this->particleSys = particleSys;
 	txcursor.loadFromFile("Texture/cursor.png");
 	spcursor.setTexture(txcursor);
 	spcursor.setScale({ 0.1f, 0.1f });

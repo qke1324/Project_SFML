@@ -7,7 +7,7 @@ SettingScene::SettingScene(RenderWindow* window, stack<Scene*>* scenes)
 	Init();
 }
 SettingScene::SettingScene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys)
-	:Scene(window, scenes, soundSys)
+	:Scene(window, scenes, soundSys, nullptr)
 {
 	Init();
 }

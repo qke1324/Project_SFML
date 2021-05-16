@@ -3,13 +3,14 @@
 #include "Player.h"
 #include "Button.h"
 #include "SoundSystem.h"
+#include "ParticleSystem.h"
 
 class Scene
 {
 public:
 	Scene() = default;
 	Scene(RenderWindow* window, stack<Scene*>* scenes);
-	Scene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys);
+	Scene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys, ParticleSystem* particleSys);
 	Scene(const Scene&) = delete;
 	Scene& operator=(const Scene&) = delete;
 	virtual ~Scene() = default;
@@ -19,7 +20,7 @@ protected:
 	RenderWindow* window = nullptr;
 	stack<Scene*>* scenes = nullptr;
 	SoundSystem* soundSys = nullptr;
-
+	ParticleSystem* particleSys = nullptr;
 	Vector2i mousePositionScreen	{ 0, 0 };
 	Vector2i mousePositionWindow	{ 0, 0 };
 	Vector2f mousePositionView		{ 0.f, 0.f };

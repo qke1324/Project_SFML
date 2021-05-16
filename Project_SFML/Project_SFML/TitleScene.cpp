@@ -68,7 +68,7 @@ void TitleScene::Update(const float& deltaTime)
 
 	if (buttons["START"]->isPressd())
 	{
-		scenes->push(new MainScene(window, scenes, soundSys));
+		scenes->push(new MainScene(window, scenes, soundSys, particleSys));
 	}
 	if (buttons["QUIT"]->isPressd())
 	{
