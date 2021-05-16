@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "SettingScene.h"
-
+ 
 SettingScene::SettingScene(RenderWindow* window, stack<Scene*>* scenes)
 	:Scene(window, scenes)
 {

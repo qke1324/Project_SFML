@@ -9,7 +9,7 @@ public:
 	ParticleSystem(const unsigned int& count);
 	ParticleSystem(const ParticleSystem&) = delete;
 	ParticleSystem& operator=(const ParticleSystem&) = delete;
-	~ParticleSystem() = default;
+	~ParticleSystem();
 
 private:
 

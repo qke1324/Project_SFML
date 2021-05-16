@@ -19,11 +19,7 @@ void Engine::Init()
 
 void Engine::Destroy()
 {
-	if (window)
-	{
-		delete window;
-		window = nullptr;
-	}
+	SAFE_DELETE(window);
 }
 
 void Engine::Input()
