@@ -44,6 +44,8 @@ void TitleScene::Init()
 
 	particleSys = new ParticleSystem(1000);
 	soundSys = new SoundSystem("Sound/NooMA-Mauve.wav", true);
+	soundSys->AddEffectSound("Sound/swing.wav", "swing");
+	soundSys->AddEffectSound("Sound/hit.wav", "hit");
 	soundSys->Play();
 }
 
@@ -66,7 +68,7 @@ void TitleScene::Update(const float& deltaTime)
 
 	if (buttons["START"]->isPressd())
 	{
-		scenes->push(new MainScene(window, scenes));
+		scenes->push(new MainScene(window, scenes, soundSys));
 	}
 	if (buttons["QUIT"]->isPressd())
 	{

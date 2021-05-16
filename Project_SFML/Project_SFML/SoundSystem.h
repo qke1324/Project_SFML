@@ -1,4 +1,5 @@
 #pragma once
+
 class SoundSystem final
 {
 public:
@@ -19,16 +20,21 @@ private:
 	float volume = 20;
 	bool loop = true;
 
+	map<string, Sound*> effectSound;
+	map<string, SoundBuffer*> effectSoundBuffer;
+
 private:
 
 	void Init();
 
 public:
 
+	void AddEffectSound(const char* soundPath, const string& soundName);
 	void SetVolume(const float& volume);
 	void VolumeDown();
 	void VolumeUp();
 	void Play();
+	void EffectPlay(const string& soundName);
 	void Pause();
 	void Stop();
 

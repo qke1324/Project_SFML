@@ -7,6 +7,12 @@ MainScene::MainScene(RenderWindow* window, stack<Scene*>* scenes)
 	Init();
 }
 
+MainScene::MainScene(RenderWindow* window, stack<Scene*>* scenes, SoundSystem* soundSys)
+	: Scene(window, scenes, soundSys)
+{
+	Init();
+}
+
 MainScene::~MainScene()
 {
 	if (!objects.empty())
@@ -76,16 +82,17 @@ void MainScene::Update(const float& deltaTime)
 	}
 
 	// rotate with angle
-	float rotation = Math::RotateAxis(mousePositionView, objects["Player"]->getPosition(), 90.f);
+	float rotation = Math::RotateAxis(objects["Object"]->getPosition(), objects["Player"]->getPosition(), 90.f);
 	objects["Player"]->setRotation(rotation);
 
 	// move dir
-	objects["Player"]->move(Math::Normalize(mousePositionView, objects["Player"]->getPosition()));
+	objects["Player"]->move(Math::Normalize(objects["Object"]->getPosition(), objects["Player"]->getPosition()));
 	
 	//collide check
 	if (objects["Object"]->getGlobalBounds().intersects(objects["Player"]->getGlobalBounds()))
 	{
-		objects["Object"]->SetActive(false);
+		soundSys->EffectPlay("hit");
+		objects["Object"]->setPosition(Math::RandomFloat(), Math::RandomFloat());
 	}
 }
 

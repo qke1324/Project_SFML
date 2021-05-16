@@ -1,9 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <SFML/Config.hpp>
+#include <random>
 using namespace sf;
 
 constexpr float PI = 3.14159265f;
+
+
 
 namespace Math
 {
@@ -26,6 +28,14 @@ namespace Math
 	{
 		Vector2f normal = Normalize(vec1, vec2);
 		return ((atan2(normal.y, normal.x) * 180.f / PI)) + angle;
-		
 	}
+
+	inline const float RandomFloat()
+	{
+		static std::uniform_real_distribution<float> urd(0.f, 600.f);
+		static std::default_random_engine dre;
+
+		return urd(dre);
+	}
+
 }
